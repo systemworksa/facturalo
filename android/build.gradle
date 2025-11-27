@@ -1,0 +1,41 @@
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.buildDir = "../build"
+
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+
+subprojects {
+    project.evaluationDependsOn(":app")
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}
+
+/**
+ * Fuerza androidx.core a 1.12.0 para todo el árbol (AGP 8.1.0 no soporta 1.16.0)
+ * SIN usar afterEvaluate (evita el error de "project already evaluated").
+ */
+subprojects { project ->
+    configurations.configureEach {
+        resolutionStrategy.eachDependency { details ->
+            if (details.requested.group == "androidx.core" &&
+                (details.requested.name == "core" || details.requested.name == "core-ktx")) {
+                details.useVersion "1.12.0"
+                details.because "AGP 8.1.0 no es compatible con androidx.core 1.16.0"
+            }
+        }
+        // por si algún plugin declara directamente 1.16.0:
+        resolutionStrategy.force(
+            "androidx.core:core:1.12.0",
+            "androidx.core:core-ktx:1.12.0"
+        )
+    }
+}
