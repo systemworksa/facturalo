@@ -155,7 +155,7 @@ class _CrearClienteVentaPageState extends State<CrearClienteVentaPage> {
                     ),
                   ),
                 ),
-                tipoIdentificacion == 'PASAPORTE'
+                tipoIdentificacion == 'PASAPORTE'  || tipoIdentificacion == 'IDENTIFICACION EXTERIOR'
                     ? Padding(
                         padding: const EdgeInsets.fromLTRB(20, 0, 30, 15),
                         child: TextField(
@@ -366,7 +366,13 @@ class _CrearClienteVentaPageState extends State<CrearClienteVentaPage> {
       ),
       value: 'PASAPORTE',
     ));
-
+    listaCiudad.add(const DropdownMenuItem(
+      child: Text(
+        'IDENTIFICACION EXTERIOR',
+        style: TextStyle(fontSize: 14),
+      ),
+      value: 'IDENTIFICACION EXTERIOR',
+    ));
     return listaCiudad;
   }
 
