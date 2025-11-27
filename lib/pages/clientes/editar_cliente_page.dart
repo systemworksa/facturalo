@@ -40,14 +40,14 @@ class _EditarClientePageState extends State<EditarClientePage> {
 
   int identificacion = 10;
   int cont = 0;
- // StreamSubscription<ConnectivityResult>? _connectivitySubscription;
+  // StreamSubscription<ConnectivityResult>? _connectivitySubscription;
   //InternetDialog ? _internetDialog;
   //final Connectivity _connectivity = Connectivity();
-   @override
+  @override
   void initState() {
     super.initState();
     //  _internetDialog = InternetDialog(context);
-   // _connectivitySubscription =
+    // _connectivitySubscription =
     //    _connectivity.onConnectivityChanged.listen(_internetDialog!.updateConnectionStatus);
   }
 
@@ -58,7 +58,7 @@ class _EditarClientePageState extends State<EditarClientePage> {
     if (conP == 1) {
       setState(() {
         clienteConsulta =
-        ModalRoute.of(context)!.settings.arguments as Cliente?;
+            ModalRoute.of(context)!.settings.arguments as Cliente?;
         cedulaController.text = clienteConsulta!.cedula.toString();
         nombreController.text = clienteConsulta!.nombre.toString();
         telefonoController.text = clienteConsulta!.telefono.toString();
@@ -401,7 +401,13 @@ class _EditarClientePageState extends State<EditarClientePage> {
       ),
       value: 'PASAPORTE',
     ));
-
+    listaCiudad.add(const DropdownMenuItem(
+      child: Text(
+        'IDENTIFICACION EXTERIOR',
+        style: TextStyle(fontSize: 14),
+      ),
+      value: 'IDENTIFICACION EXTERIOR',
+    ));
     return listaCiudad;
   }
 

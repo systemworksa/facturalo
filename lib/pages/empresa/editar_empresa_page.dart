@@ -15,6 +15,7 @@ import '../../common/loading.dart';
 import 'dart:async';
 //import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:facturaloapp2025/common/check_internert.dart';
+
 class EditarEmpresaPage extends StatefulWidget {
   const EditarEmpresaPage({Key? key}) : super(key: key);
 
@@ -49,16 +50,16 @@ class _EditarEmpresaPageState extends State<EditarEmpresaPage> {
   // ignore: prefer_final_fields
   bool _isLoading = false;
   final load = Load();
- // StreamSubscription<ConnectivityResult>? _connectivitySubscription;
- // InternetDialog ? _internetDialog;
- // final Connectivity _connectivity = Connectivity();
+  // StreamSubscription<ConnectivityResult>? _connectivitySubscription;
+  // InternetDialog ? _internetDialog;
+  // final Connectivity _connectivity = Connectivity();
   @override
   void initState() {
     super.initState();
     getEmpresa();
-   // _internetDialog = InternetDialog(context);
-   // _connectivitySubscription =
-   // _connectivity.onConnectivityChanged.listen(_internetDialog!.updateConnectionStatus);
+    // _internetDialog = InternetDialog(context);
+    // _connectivitySubscription =
+    // _connectivity.onConnectivityChanged.listen(_internetDialog!.updateConnectionStatus);
   }
 
   Widget login(IconData icon, BuildContext context) {
@@ -209,9 +210,8 @@ class _EditarEmpresaPageState extends State<EditarEmpresaPage> {
           style: TextStyle(fontSize: 11),
         ),
       ),
-      value: 'CONTRIBUYENTE SIMPLIFICADO SOCIEDADES',
+      value: 'SIMPLIFICADO SOCIEDADES',
     ));
-
     listaCiudad.add(const DropdownMenuItem(
       child: SizedBox(
         width: 220.0,
@@ -260,7 +260,6 @@ class _EditarEmpresaPageState extends State<EditarEmpresaPage> {
 
     return listaCiudad;
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -888,9 +887,10 @@ class _EditarEmpresaPageState extends State<EditarEmpresaPage> {
 
     var valor = int.tryParse(impuestoController.text);
     if (!(valor != null && valor >= 8 && valor <= 12)) {
-      message.showToast('La tarifa del impuesto debe ser un valor entre 8 y 12.');
+      message
+          .showToast('La tarifa del impuesto debe ser un valor entre 8 y 12.');
       return;
-    } 
+    }
 
     setState(() {
       _isLoading = true;
@@ -915,10 +915,8 @@ class _EditarEmpresaPageState extends State<EditarEmpresaPage> {
         imagen,
         prefs.getString('token'),
         prefs.getString('idEmpresa'));
-    
 
     registro.stream.transform(utf8.decoder).listen((value) {
-      
       final List<dynamic> json = jsonDecode("[$value]");
       // Create a copy of json
       final List<dynamic> json2 = List.from(json);
@@ -997,7 +995,8 @@ class _EditarEmpresaPageState extends State<EditarEmpresaPage> {
   /* -------------------------------------------------------------------------- */
   getEmpresa() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    Future<dynamic> resp = empresa.obtenerResumen(prefs.getString('idEmpresa'),prefs.getString('idUsuario'), prefs.getString('token'));
+    Future<dynamic> resp = empresa.obtenerResumen(prefs.getString('idEmpresa'),
+        prefs.getString('idUsuario'), prefs.getString('token'));
     _isLoading = true;
     resp.then((id) {
       final List<dynamic> json = jsonDecode("[$id]");
@@ -1024,7 +1023,8 @@ class _EditarEmpresaPageState extends State<EditarEmpresaPage> {
               child["informacionEmpresa"]["tipoContribuyente"];
           opcionAgenteRetencion =
               child["informacionEmpresa"]["agenteRetencion"];
-          impuestoController.text = child["informacionEmpresa"]["tarifaIva"].toString();
+          impuestoController.text =
+              child["informacionEmpresa"]["tarifaIva"].toString();
         });
       }
     });

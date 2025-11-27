@@ -15,6 +15,7 @@ import '../../common/loading.dart';
 import 'dart:async';
 //import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:facturaloapp2025/common/check_internert.dart';
+
 class ConfiguracionEmpresaPage extends StatefulWidget {
   const ConfiguracionEmpresaPage({Key? key}) : super(key: key);
 
@@ -55,10 +56,11 @@ class _ConfiguracionEmpresaPageState extends State<ConfiguracionEmpresaPage> {
   @override
   void initState() {
     super.initState();
-  //  _internetDialog = InternetDialog(context);
-  //  _connectivitySubscription =
-  //  _connectivity.onConnectivityChanged.listen(_internetDialog!.updateConnectionStatus);
+    //  _internetDialog = InternetDialog(context);
+    //  _connectivitySubscription =
+    //  _connectivity.onConnectivityChanged.listen(_internetDialog!.updateConnectionStatus);
   }
+
   Widget login(IconData icon, BuildContext context) {
     return Container(
       height: 60,
@@ -209,6 +211,16 @@ class _ConfiguracionEmpresaPageState extends State<ConfiguracionEmpresaPage> {
       ),
       value: 'CONTRIBUYENTE SIMPLIFICADO SOCIEDADES',
     ));
+    listaCiudad.add(const DropdownMenuItem(
+      child: SizedBox(
+        width: 220.0,
+        child: Text(
+          'SIMPLIFICADO SOCIEDADES',
+          style: TextStyle(fontSize: 11),
+        ),
+      ),
+      value: 'SIMPLIFICADO SOCIEDADES',
+    ));
 
     listaCiudad.add(const DropdownMenuItem(
       child: SizedBox(
@@ -220,6 +232,8 @@ class _ConfiguracionEmpresaPageState extends State<ConfiguracionEmpresaPage> {
       ),
       value: 'CONTRIBUYENTE RÉGIMEN MICROEMPRESAS',
     ));
+
+    print(listaCiudad);
     return listaCiudad;
   }
 
@@ -1005,7 +1019,6 @@ class _ConfiguracionEmpresaPageState extends State<ConfiguracionEmpresaPage> {
           _isLoading = true;
         });
         Future<dynamic> resp = usuarios.consultaRimpe(cedulaController.text);
-
         resp.then((id) {
           setState(() {
             _isLoading = false;
