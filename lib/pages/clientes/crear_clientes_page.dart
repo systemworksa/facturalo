@@ -11,6 +11,7 @@ import '../../common/colorExadecimal.dart';
 import '../../common/custom_input.dart';
 import '../../common/loading.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 ////import 'package:connectivity_plus/connectivity_plus.dart';
 class CrearClientePage extends StatefulWidget {
   const CrearClientePage({Key? key}) : super(key: key);
@@ -38,15 +39,16 @@ class _CrearClientePageState extends State<CrearClientePage> {
 
   List<Cliente> clienteItem = [];
   // StreamSubscription<ConnectivityResult>? _connectivitySubscription;
-   InternetDialog ? _internetDialog;
+  InternetDialog? _internetDialog;
   //final Connectivity _connectivity = Connectivity();
   @override
   void initState() {
     super.initState();
-     // _internetDialog = InternetDialog(context);
+    // _internetDialog = InternetDialog(context);
     //_connectivitySubscription =
     //    _connectivity.onConnectivityChanged.listen(_internetDialog!.updateConnectionStatus);
   }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -161,7 +163,7 @@ class _CrearClientePageState extends State<CrearClientePage> {
                       ),
                     ),
                   ),
-                  tipoIdentificacion == 'PASAPORTE'
+                  tipoIdentificacion == 'PASAPORTE' || tipoIdentificacion == 'IDENTIFICACION EXTERIOR'
                       ? Padding(
                           padding: const EdgeInsets.fromLTRB(20, 0, 30, 15),
                           child: TextField(
@@ -372,7 +374,13 @@ class _CrearClientePageState extends State<CrearClientePage> {
       ),
       value: 'PASAPORTE',
     ));
-
+    listaCiudad.add(const DropdownMenuItem(
+      child: Text(
+        'IDENTIFICACION EXTERIOR',
+        style: TextStyle(fontSize: 14),
+      ),
+      value: 'IDENTIFICACION EXTERIOR',
+    ));
     return listaCiudad;
   }
 

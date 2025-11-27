@@ -233,7 +233,6 @@ class _ConfiguracionEmpresaPageState extends State<ConfiguracionEmpresaPage> {
       value: 'CONTRIBUYENTE RÉGIMEN MICROEMPRESAS',
     ));
 
-    print(listaCiudad);
     return listaCiudad;
   }
 

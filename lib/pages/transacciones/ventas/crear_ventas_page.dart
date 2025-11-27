@@ -1682,7 +1682,7 @@ class _CrearVentaPageState extends State<CrearVentaPage>
               direction: Axis.horizontal,
               children: [
                 FaIcon(
-                  FontAwesomeIcons.bookmark,
+                  Icons.bookmark,
                   color: color,
                 ),
                 const SizedBox(
@@ -1879,7 +1879,7 @@ class _CrearVentaPageState extends State<CrearVentaPage>
               alignment: Alignment.center,
               child: FaIcon(
                 // ignore: deprecated_member_use
-                FontAwesomeIcons.trashAlt,
+                Icons.delete,
                 color: Colors.red,
               ),
             ),

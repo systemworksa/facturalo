@@ -188,7 +188,7 @@ class _EditarClientePageState extends State<EditarClientePage> {
                       ),
                     ),
                   ),
-                  tipoIdentificacion == 'PASAPORTE'
+                  tipoIdentificacion == 'PASAPORTE' || tipoIdentificacion == 'IDENTIFICACION EXTERIOR'
                       ? Padding(
                           padding: const EdgeInsets.fromLTRB(20, 0, 30, 15),
                           child: TextField(
